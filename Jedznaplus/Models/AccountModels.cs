@@ -11,6 +11,8 @@ namespace Jedznaplus.Models
 
     //fefwefwefwefwefwefwfwefhrtthr
 
+    //Ja tu bylam :D MO ;)
+
     public class UsersContext : DbContext
     {
         public UsersContext()

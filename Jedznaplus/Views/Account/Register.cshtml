@@ -1,11 +1,11 @@
 ﻿@model Jedznaplus.Models.RegisterModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Rejestracja";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
+    <h2>Zarejestruj nowe konto.</h2>
 </hgroup>
 
 @using (Html.BeginForm()) {
@@ -16,19 +16,19 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.UserName)
+                <label>Nazwa użytkownika</label>
                 @Html.TextBoxFor(m => m.UserName)
             </li>
             <li>
-                @Html.LabelFor(m => m.Password)
+                <label>Hasło</label>
                 @Html.PasswordFor(m => m.Password)
             </li>
             <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
+                <label>Potwierdz hasło</label>
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
         </ol>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Zarejestruj" />
     </fieldset>
 }
 

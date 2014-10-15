@@ -1,11 +1,11 @@
 ﻿@model Jedznaplus.Models.RegisterExternalLoginModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Rejestracja";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
+    <h2>Połaczenie z kontem @ViewBag.ProviderDisplayName.</h2>
 </hgroup>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
@@ -15,19 +15,19 @@
     <fieldset>
         <legend>Association Form</legend>
         <p>
-            You've successfully authenticated with <strong>@ViewBag.ProviderDisplayName</strong>.
-            Please enter a user name for this site below and click the Confirm button to finish
-            logging in.
+            Pierwsza faza procesu rejestracj z wykorzystaniem konta <strong>@ViewBag.ProviderDisplayName</strong>
+            powiodła się. Aby dokończyć proces rejestracji wpisz nazwę użytkownika i kliknij przycisk Zarejestuj.
+
         </p>
         <ol>
             <li class="name">
-                @Html.LabelFor(m => m.UserName)
+                <label>Nazwa użytkownika</label>
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
         </ol>
         @Html.HiddenFor(m => m.ExternalLoginData)
-        <input type="submit" value="Register" />
+        <input type="submit" value="Zarejestruj" />
     </fieldset>
 }
 

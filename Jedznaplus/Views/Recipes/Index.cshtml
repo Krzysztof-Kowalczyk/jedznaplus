@@ -6,9 +6,19 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+@if (Request.IsAuthenticated) {
+    <p>
+        @Html.ActionLink("Stwórz nowy przepis", "Create")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) się, aby dodawać nowe przepisy
+    </p>
+}
+
 <table>
     <tr>
         <th>
@@ -25,12 +35,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PreparationTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CookTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalTime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Serves)
@@ -62,12 +66,6 @@
             @Html.DisplayFor(modelItem => item.PreparationTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CookTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalTime)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Serves)
         </td>
         <td>
@@ -77,9 +75,19 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+
+@if (item.UserName == HttpContext.Current.User.Identity.Name)
+{
+            @Html.ActionLink("Edycja", "Edit", new { id=item.Id })  
+}
+                                                                 
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.Id }) 
+
+@if (item.UserName == HttpContext.Current.User.Identity.Name)
+{
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+}
+
         </td>
     </tr>
 }

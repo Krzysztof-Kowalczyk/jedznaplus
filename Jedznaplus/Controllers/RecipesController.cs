@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jedznaplus.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,33 +14,39 @@ namespace Jedznaplus.Controllers
 
         public ActionResult Index()
         {
+         var db = new RecipesDataContext();
+         var recipes=db.Recipes.ToList();
 
-            var auction = new []{
-                new Models.Recipe(){
-                Name = "Pomidorowka",
-                Ingredients="Koncentrat pomidorowy, rosół z niedzieli, śmietana, cukier",
-                PreparationMethod = "Podgrzej rosół, wlej koncentrat, dodaj troche cukru, dodaj śmietany",
-                PreparationTime = 0,
-                CookTime = 10,
-                TotalTime = 10,
-                Serves = 4,
-                Calories=200,
-                UserName="Krzysztof"
-                },
-                new Models.Recipe(){
-                Name = "Pomidorowka",
-                Ingredients="Koncentrat pomidorowy, rosół z niedzieli, śmietana, cukier",
-                PreparationMethod = "Podgrzej rosół, wlej koncentrat, dodaj troche cukru, dodaj śmietany",
-                PreparationTime = 0,
-                CookTime = 10,
-                TotalTime = 10,
-                Serves = 4,
-                Calories=200,
-                UserName="Krzysztof"
-                }
-            };
+            return View(recipes);
+        }
 
-            return View(auction);
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(Models.Recipe recipe)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new RecipesDataContext();
+                recipe.UserName = User.Identity.Name;
+                db.Recipes.Add(recipe);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return Create();
+        }
+
+        public ActionResult Edit (int id)
+        {
+            var db = new RecipesDataContext();
+            var recipe = db.Recipes.Single(a => a.Id == id);
+            return View(recipe);
         }
 
     }

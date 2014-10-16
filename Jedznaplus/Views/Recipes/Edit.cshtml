@@ -1,0 +1,94 @@
+﻿@model Jedznaplus.Models.Recipe
+
+@{
+    ViewBag.Title = "Edycja";
+}
+
+<h2>Edycja</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Recipe</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ingredients)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ingredients)
+            @Html.ValidationMessageFor(model => model.Ingredients)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PreparationMethod)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PreparationMethod)
+            @Html.ValidationMessageFor(model => model.PreparationMethod)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PreparationTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PreparationTime)
+            @Html.ValidationMessageFor(model => model.PreparationTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Serves)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Serves)
+            @Html.ValidationMessageFor(model => model.Serves)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Calories)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Calories)
+            @Html.ValidationMessageFor(model => model.Calories)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <p>
+            <input type="submit" value="Zapisz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powrót do listy przepisów", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

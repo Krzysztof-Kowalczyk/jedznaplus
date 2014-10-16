@@ -8,6 +8,12 @@ namespace Jedznaplus.Models
 {
     public class RecipesDataContext : DbContext
     {
-        public DbSet<Recipe> Recpes { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+
+       /* static RecipesDataContext()
+        {
+          Database.SetInitializer(new DropCreateDatabaseAlways<RecipesDataContext>());
+        }*/
+
     }
 }

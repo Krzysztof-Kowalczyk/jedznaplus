@@ -224,7 +224,7 @@ ul#menu {
     }
 
         .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
+            color: #fff;           
         }
 
         .featured p {
@@ -234,6 +234,7 @@ ul#menu {
 /* page titles */
 hgroup.title {
     margin-bottom: 10px;
+    text-align: center;
 }
 
 hgroup.title h1, hgroup.title h2 {

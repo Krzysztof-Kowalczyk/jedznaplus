@@ -10,6 +10,11 @@ namespace Jedznaplus.Models
     {
         public DbSet<Recipe> Recipes { get; set; }
 
+             public RecipesDataContext()
+            : base("DefaultConnection")
+        {
+        }
+
        /* static RecipesDataContext()
         {
           Database.SetInitializer(new DropCreateDatabaseAlways<RecipesDataContext>());

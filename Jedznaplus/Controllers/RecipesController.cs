@@ -77,7 +77,7 @@ namespace Jedznaplus.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(Models.Recipe recipe)
+        public ActionResult Edit(Models.Recipe recipe, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -88,12 +88,26 @@ namespace Jedznaplus.Controllers
                 }
 
                 dbPost.Calories = recipe.Calories;
-                dbPost.ImageUrl = recipe.ImageUrl;
                 dbPost.Ingredients = recipe.Ingredients;
                 dbPost.Name = recipe.Name;
                 dbPost.PreparationMethod = recipe.PreparationMethod;
                 dbPost.PreparationTime = recipe.PreparationTime;
                 dbPost.Serves = recipe.Serves;
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    // extract only the fielname
+                    var fileName = Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    var absolutePath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                    var relativePath = "~/Images/" + fileName;
+                    file.SaveAs(absolutePath);
+                    dbPost.ImageUrl = relativePath;
+                }
+                else
+                {
+                    dbPost.ImageUrl = "~/Images/noPhoto.png";
+                }
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

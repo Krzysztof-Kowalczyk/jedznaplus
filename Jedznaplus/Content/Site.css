@@ -1,8 +1,48 @@
-﻿html {
+﻿
+.miniaturka img  {
+    float: left;
+    padding:20px;
+}
+.miniaturka h1{
+    text-align:center;
+} 
+.miniaturka{
+height:200px;
+width:600px;
+}
+
+.przepis{
+width:600px;
+}
+
+.info{
+height:300px;
+}
+
+.detailInfo{
+padding-left:20px;
+padding-right:20px;
+}
+
+.przepis img{
+    float:left;
+    padding:20px;
+}
+
+.display-label{
+font-weight:bold;
+}
+
+.przepis h1{
+    text-align:center;
+} 
+
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
 }
+
 
 body {
     background-color: #fff;
@@ -586,7 +626,6 @@ td {
 tr.pager td {
     padding: 0 0.25em 0 0;
 }
-
 
 /********************
 *   Mobile Styles   *

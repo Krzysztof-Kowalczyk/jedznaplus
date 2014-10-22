@@ -15,7 +15,7 @@ namespace Jedznaplus.Models
         {
         }
 
-       /* static RecipesDataContext()
+        /*static RecipesDataContext()
         {
           Database.SetInitializer(new DropCreateDatabaseAlways<RecipesDataContext>());
         }*/

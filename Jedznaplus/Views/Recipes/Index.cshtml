@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Jedznaplus.Models.Recipe>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Przepisy";
 }
 
-<h2>Index</h2>
+<h2>Przepisy</h2>
 
 
 @if (Request.IsAuthenticated) {
@@ -18,78 +18,36 @@ else
         @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) się, aby dodawać nowe przepisy
     </p>
 }
+        @foreach (var item in Model)
+        {
+            <div class="miniaturka">
 
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ingredients)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreparationMethod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreparationTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Serves)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Calories)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
+                <img src="@Url.Content(item.ImageUrl)" alt="image" width="150" height="150" />
+                   
+                <h1> @Html.DisplayFor(modelItem => item.Name)</h1>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ingredients)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreparationMethod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreparationTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Serves)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Calories)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
 
-@if (item.UserName == HttpContext.Current.User.Identity.Name)
-{
-            @Html.ActionLink("Edycja", "Edit", new { id=item.Id })  
-}
-                                                                 
-            @Html.ActionLink("Szczegóły", "Details", new { id=item.Id }) 
+                   <label> Czas przygotowania: </label> @Html.DisplayFor(modelItem => item.PreparationTime)
+                   <br>
 
-@if (item.UserName == HttpContext.Current.User.Identity.Name)
-{
-            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
-}
+                   <label> Ilość porcji: </label> @Html.DisplayFor(modelItem => item.Serves)
+                   <br>
+                   
+                   <label> Wartość kaloryczna: </label> @Html.DisplayFor(modelItem => item.Calories)
+                   <br>
 
-        </td>
-    </tr>
-}
 
-</table>
+                    @if (item.UserName == HttpContext.Current.User.Identity.Name)
+                    {
+                        @Html.ActionLink("Edycja", "Edit", new { id = item.Id })
+                    }
+
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.Id })
+
+                    @if (item.UserName == HttpContext.Current.User.Identity.Name)
+                    {
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                    }
+                    </div>
+        }
+

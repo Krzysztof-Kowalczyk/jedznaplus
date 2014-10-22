@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
+        <div class="mainDiv">
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
@@ -22,6 +24,10 @@
                         <ul id="menu">
                             <li>@Html.ActionLink("Strona domowa", "Index", "Home")</li>
                             <li>@Html.ActionLink("Przepisy", "Index", "Recipes")</li>
+@if (Request.IsAuthenticated)
+{
+    <li>@Html.ActionLink("Przepisy użytkownika", "UserRecipes", "Recipes")</li>
+}
                             <li>@Html.ActionLink("O stronie", "About", "Home")</li>
                             <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                         </ul>
@@ -45,5 +51,6 @@
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+            </div>
     </body>
 </html>

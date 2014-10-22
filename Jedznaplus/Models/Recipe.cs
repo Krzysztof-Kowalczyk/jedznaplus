@@ -23,7 +23,6 @@ namespace Jedznaplus.Models
         [Display(Name = "Sposób przygotowania")]
         public string PreparationMethod { get; set; }
        
-        [Required]
         [Display(Name = "Zdjęcie")]
         public string ImageUrl { get; set; }
         

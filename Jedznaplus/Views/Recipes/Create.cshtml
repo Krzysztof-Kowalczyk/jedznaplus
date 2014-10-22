@@ -6,7 +6,8 @@
 
 <h2>Stwórz nowy przepis</h2>
 
-@using (Html.BeginForm()) {
+@*using (Html.BeginForm()) {*@
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -40,10 +41,8 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.ImageUrl)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ImageUrl)
-            @Html.ValidationMessageFor(model => model.ImageUrl)
-        </div>
+
+        <input type="file" name="file" accept="image/jpeg,image/png">
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PreparationTime)
@@ -69,7 +68,7 @@
             @Html.ValidationMessageFor(model => model.Calories)
         </div>
         <p>
-            <input type="submit" value="Dodaj" />
+            <input type="submit" name="dodajPrzepis" value="Dodaj" />
         </p>
     </fieldset>
 }

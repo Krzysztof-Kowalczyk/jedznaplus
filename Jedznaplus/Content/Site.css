@@ -1,4 +1,9 @@
 ﻿
+
+pre{
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
 .miniaturka img  {
     float: left;
     padding:20px;

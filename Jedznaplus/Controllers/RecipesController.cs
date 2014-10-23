@@ -44,8 +44,9 @@ namespace Jedznaplus.Controllers
                     // extract only the fielname
                     var fileName = Path.GetFileName(file.FileName);
                     // store the file inside ~/App_Data/uploads folder
-                    var absolutePath = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    var relativePath ="~/Images/"+fileName;
+                    var uniqueFileName =Guid.NewGuid()+ fileName;
+                    var absolutePath = Path.Combine(Server.MapPath("~/Images"), uniqueFileName);
+                    var relativePath = "~/Images/" + uniqueFileName;
                     file.SaveAs(absolutePath);
                     recipe.ImageUrl = relativePath;
                 }
@@ -99,14 +100,11 @@ namespace Jedznaplus.Controllers
                     // extract only the fielname
                     var fileName = Path.GetFileName(file.FileName);
                     // store the file inside ~/App_Data/uploads folder
-                    var absolutePath = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    var relativePath = "~/Images/" + fileName;
+                    var uniqueFileName=Guid.NewGuid()+fileName;
+                    var absolutePath = Path.Combine(Server.MapPath("~/Images"), uniqueFileName);
+                    var relativePath = "~/Images/" + uniqueFileName;
                     file.SaveAs(absolutePath);
                     dbPost.ImageUrl = relativePath;
-                }
-                else
-                {
-                    dbPost.ImageUrl = "~/Images/noPhoto.png";
                 }
 
                 db.SaveChanges();
@@ -160,6 +158,27 @@ namespace Jedznaplus.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteImage(int ?id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var toDelete = db.Recipes.Find(id);
+
+            if (toDelete != null)
+            {
+                var path=Server.MapPath(toDelete.ImageUrl);
+                System.IO.File.Delete(path);
+                toDelete.ImageUrl = "~/Images/noPhoto.png";
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Edit",db.Recipes.Find(id));
+
         }
 
     }

@@ -53,7 +53,8 @@
                 @Html.DisplayNameFor(model => model.Ingredients):
             </div>
             <div class="display-field">
-                @Html.DisplayFor(model => model.Ingredients)
+               @* @Html.DisplayFor(model => model.Ingredients)*@
+                @Html.Raw(Model.Ingredients.Replace(Environment.NewLine, "<br/>"))
             </div>
             <br>
 
@@ -61,13 +62,17 @@
                 @Html.DisplayNameFor(model => model.PreparationMethod):
             </div>
             <div class="display-field">
-                @Html.DisplayFor(model => model.PreparationMethod)
+            @*   @Html.DisplayFor(model => model.PreparationMethod)*@
+                @Html.Raw(Model.PreparationMethod.Replace(Environment.NewLine, "<br/>"))
             </div>
             <br>
         </div>
     </fieldset>
     <p>
-        @Html.ActionLink("Edycja", "Edit", new { id = Model.Id }) |
+@if (Model.UserName == HttpContext.Current.User.Identity.Name)
+{
+        @Html.ActionLink("Edycja", "Edit", new { id = Model.Id }) 
+}
         @Html.ActionLink("Powrót do listy przepisów", "Index")
     </p>
 </div>

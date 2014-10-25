@@ -10,7 +10,6 @@
     <fieldset>
         <legend>Recipe</legend>
         <img src="@Url.Content(Model.ImageUrl)" alt="image" width="300" height="300" />
-        <br>
 
         <div class="info">
            <h1> @Html.DisplayFor(model => model.Name)</h1>
@@ -20,7 +19,7 @@
             @Html.DisplayNameFor(model => model.PreparationTime):
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => model.PreparationTime)
+            @Html.DisplayFor(model => model.PreparationTime) minut
         </div>
         <br>
 
@@ -36,7 +35,7 @@
             @Html.DisplayNameFor(model => model.Calories):
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => model.Calories)
+            @Html.DisplayFor(model => model.Calories) kcal
         </div>
         <br>
             <div class="display-label">
@@ -53,7 +52,6 @@
                 @Html.DisplayNameFor(model => model.Ingredients):
             </div>
             <div class="display-field">
-               @* @Html.DisplayFor(model => model.Ingredients)*@
                 @Html.Raw(Model.Ingredients.Replace(Environment.NewLine, "<br/>"))
             </div>
             <br>
@@ -62,7 +60,6 @@
                 @Html.DisplayNameFor(model => model.PreparationMethod):
             </div>
             <div class="display-field">
-            @*   @Html.DisplayFor(model => model.PreparationMethod)*@
                 @Html.Raw(Model.PreparationMethod.Replace(Environment.NewLine, "<br/>"))
             </div>
             <br>

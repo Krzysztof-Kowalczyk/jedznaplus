@@ -1,27 +1,41 @@
 ﻿
+.fotka {
+height:200px;
+width:165px;
+float:left;
+padding:5px;
+padding-top:65px;
+
+}
+
+.nazwaPrzepisu{
+height:75px;
+}
 
 pre{
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
 }
-.miniaturka img  {
-    float: left;
-    padding:20px;
+.miniaturka img {
+  
 }
 .miniaturka h1{
-    text-align:center;
+text-align:center;
+ word-wrap: break-word;
+overflow:hidden;
+font-size:17pt;
 } 
 .miniaturka{
-height:200px;
-width:600px;
+height:260px;
+width:550px;
 }
 
 .przepis{
-width:600px;
+width:850px;
 }
 
 .info{
-height:300px;
+height:330px;
 }
 
 .detailInfo{
@@ -40,6 +54,9 @@ font-weight:bold;
 
 .przepis h1{
     text-align:center;
+ word-wrap: break-word;
+overflow:hidden;
+font-size:17pt;
 } 
 
 html {

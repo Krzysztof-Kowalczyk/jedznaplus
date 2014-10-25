@@ -13,19 +13,21 @@
 @foreach (var item in Model)
 {
     <div class="miniaturka">
+        <div class="fotka">
+            <img src="@Url.Content(item.ImageUrl)" alt="image" width="150" height="150" />
+        </div>
 
-        <img src="@Url.Content(item.ImageUrl)" alt="image" width="150" height="150" />
+        <div class="nazwaPrzepisu">
+            <h1> @Html.DisplayFor(modelItem => item.Name)</h1>
+        </div>
 
-        <h1> @Html.DisplayFor(modelItem => item.Name)</h1>
-
-
-        <label> Czas przygotowania: </label> @Html.DisplayFor(modelItem => item.PreparationTime)
+        <label> Czas przygotowania: </label> @Html.DisplayFor(modelItem => item.PreparationTime) minut
         <br>
 
         <label> Ilość porcji: </label> @Html.DisplayFor(modelItem => item.Serves)
         <br>
 
-        <label> Wartość kaloryczna: </label> @Html.DisplayFor(modelItem => item.Calories)
+        <label> Wartość kaloryczna: </label> @Html.DisplayFor(modelItem => item.Calories) kcal
         <br>
 
 
